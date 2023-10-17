@@ -39,8 +39,10 @@ def ingest_data():
     cluster=cluster.dropna(ignore_index=True)
     cantPalClav=Predf["cantidad_de_palabras_clave"]
     cantPalClav=cantPalClav.dropna(ignore_index=True)
-    porcPalClav=Predf["porcentaje_de_palabras_clave"]
+    porcPalClav=Predf["porcentaje_de_palabras_clave"].astype("string")
     porcPalClav=porcPalClav.dropna(ignore_index=True)
+    porcPalClav=porcPalClav.str.rstrip("%").str.replace(",",".").str.replace(" ","")
+    
 
     palCla=pd.Series(name=Predf["principales_palabras_clave"].name)
 
